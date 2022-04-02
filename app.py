@@ -20,18 +20,22 @@ client = session.client("s3",
                         aws_access_key_id = ACCESS_ID,
                         aws_secret_access_key=SECRET_KEY)
 
+
 # capture image
 camera = PiCamera()
 now = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
-camera.capture(f'/home/pi/camera-app/image{now}.jpeg')
+path = f"/tmp/image{now}.jpeg"
+
+camera.capture(path)
 
 # upload image
 try:
-    client.upload_file(f"image{now}.jpeg", "picamera_photos", f"image{now}.jpeg")
+    client.upload_file(path, "picamera_photos", f"image{now}.jpeg")
+    print("Successful upload")
 except Exception:
     print("Failed client connection")
     exit(1)
 
 # delete image
-os.remove(f"image{now}.jpeg")
+os.remove(path)
 
