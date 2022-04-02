@@ -7,6 +7,6 @@ A script to take pictures with the Raspberry Pi zero and the ZeroCam module.
 The script captures a picture and saves it locally as a temporary file. 
 A session with a spaces client is initiated. The image is uploaded there and deleted from the local directory.
 
-## Extra idead
+## Extra ideas
 
 Use a cronjob to run once every certain amount of time.
