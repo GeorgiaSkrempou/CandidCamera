@@ -1,15 +1,13 @@
-from picamera import PiCamera
-#from time import sleep
-from boto3 import session # used to connect to SPACES
-from botocore.client import Config
+from boto3 import session
 import os
 from datetime import datetime
 from dotenv import load_dotenv
+import boto.s3.connection
 
 load_dotenv() # a function that reads the .env file and stores those variables in os.env and makes them environment variables
 ACCESS_ID = os.environ["ACCESS_ID"]
 SECRET_KEY = os.environ["SECRET_KEY"]
-SPACES_URL = os.environ["SPACES_URL"]
+SPACES_URL = "https://ams3.digitaloceanspaces.com"
 
 
 # initiate session with spaces
@@ -21,21 +19,10 @@ client = session.client("s3",
                         aws_secret_access_key=SECRET_KEY)
 
 
-# capture image
-camera = PiCamera()
-now = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
-path = f"/tmp/image{now}.jpeg"
 
-camera.capture(path)
+my_photos = client.list_objects(Bucket = 'mononokeros')['Contents']
 
-# upload image
-try:
-    client.upload_file(path, "picamera_photos", f"image{now}.jpeg")
-    print("Successful upload")
-except Exception:
-    print("Failed client connection")
-    exit(1)
+for photo in my_photos:
+    client.download_file('mononokeros', f"{photo['Key']}", f"{photo['Key']}")
 
-# delete image
-os.remove(path)
 
