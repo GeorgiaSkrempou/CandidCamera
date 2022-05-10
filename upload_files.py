@@ -23,7 +23,7 @@ client = session.client("s3",
 
 # capture image
 camera = PiCamera()
-now = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 path = f"/tmp/image{now}.jpeg"
 
 camera.capture(path)
