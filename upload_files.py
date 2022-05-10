@@ -1,6 +1,6 @@
 from picamera import PiCamera
 #from time import sleep
-from boto3 import session
+from boto3 import session # used to connect to SPACES
 from botocore.client import Config
 import os
 from datetime import datetime
