@@ -1,4 +1,4 @@
-# Cabdid Camera
+# Candid Camera
 
 ## Raspberry Pi zero with ZeroCam module
 
