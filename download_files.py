@@ -2,7 +2,6 @@ from boto3 import session
 import os
 from datetime import datetime
 from dotenv import load_dotenv
-import boto.s3.connection
 
 load_dotenv() # a function that reads the .env file and stores those variables in os.env and makes them environment variables
 ACCESS_ID = os.environ["ACCESS_ID"]

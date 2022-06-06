@@ -1,6 +1,6 @@
 import cv2
-import numpy as np
 import glob
+import os
 
 # make an empty list
 img_array = []
@@ -24,3 +24,8 @@ for i in range(len(img_array)):
 
 # release video
 out.release()
+
+# remove images from local directory
+file_list = glob.glob("picamera_photos/*.jpeg")
+for file_path in file_list:
+    os.remove(file_path)
