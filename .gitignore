@@ -3,3 +3,4 @@ venv
 picamera_photos
 !picamera_photos/.gitkeep
 timelapse.avi
+.idea
